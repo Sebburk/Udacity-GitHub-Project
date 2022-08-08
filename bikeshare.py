@@ -43,12 +43,9 @@ def get_filters():
             break
         else:
             print("\n Try again")    
-    
-
 
     print('-'*40)
     return city, month, day
-
 
 def load_data(city, month, day):
     """
@@ -61,35 +58,26 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-
-    
-    
+      
     df = pd.read_csv(CITY_DATA[city])
-
     
     df['Start Time'] = pd.to_datetime(df['Start Time'])
-
    
     df['month'] = df['Start Time'].dt.month
     df['day_of_week'] = df['Start Time'].dt.weekday_name
-
-
    
     if month != 'All':
        
         months = ['January', 'February', 'March', 'April', 'May', 'June']
-        month = months.index(month)+1
-    
+        month = months.index(month)+1 
         
         df = df[df['month']==month] 
-
    
     if day != 'All':
         
         df = df[df['day_of_week']==day]
 
     return df
-
 
 def time_stats(df,month,day):
    """Displays statistics on the most frequent times of travel."""
@@ -115,10 +103,8 @@ def time_stats(df,month,day):
    pop_hour=df['Start Hour'].mode()[0]
    print("The travled Start Hour is {}:00 hrs".format(pop_hour))
 
-
    print("\nThis took %s seconds." % (time.time() - start_time))
    print('-'*40)
-
 
 def station_stats(df):
    """Displays statistics on the most popular stations and trip."""
@@ -139,10 +125,8 @@ def station_stats(df):
    pop_com= df['combination'].mode()[0]
    print("The most frequent combination of Start and End Station is {} ".format(pop_com))
 
-
    print("\nThis took %s seconds." % (time.time() - start_time))
    print('-'*40)
-
 
 def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
@@ -150,7 +134,6 @@ def trip_duration_stats(df):
     # display total travel time
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
-
  
     total_duration=df['Trip Duration'].sum()
     minute,second=divmod(total_duration,60)
@@ -169,7 +152,6 @@ def trip_duration_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-
 def user_stats(df,city):
     """Displays statistics on bikeshare users."""
 
@@ -179,7 +161,6 @@ def user_stats(df,city):
     # Display counts of user types
     user_counts= df['User Type'].value_counts()
     print("The user types are:\n",user_counts)
-
 
     # Display counts of gender
     if city.title() == 'Chicago' or city.title() == 'New York City':
@@ -194,10 +175,8 @@ def user_stats(df,city):
         common= int(df['Birth Year'].mode()[0])
         print("Most users are born of the year",common)
 
-
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-
  
 def display_data(df):
 
@@ -227,7 +206,6 @@ def display_data(df):
                 else:
                     print("Please enter a valid response")              
 
-
 def main():
     while True:
         city, month, day = get_filters()
@@ -242,15 +220,10 @@ def main():
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
-
 
 if __name__ == "__main__":
 	main()
-
-
         
-
-
 def main():
     while True:
         city, month, day = get_filters()
@@ -264,8 +237,7 @@ def main():
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
-            break
-       
+            break       
         
 if __name__ == "__main__":main()
 
