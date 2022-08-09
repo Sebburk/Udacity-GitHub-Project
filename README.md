@@ -13,4 +13,4 @@ We use python to anylize data about biking
 N/A
 
 ### Credits
-Udacity Suppot
+Udacity Support and the Knowledge Hub
